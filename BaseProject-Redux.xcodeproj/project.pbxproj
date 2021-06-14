@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E6D4E2A26772DD800741B5C /* SystemEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D4E2926772DD800741B5C /* SystemEventHandler.swift */; };
 		7ED39ED62672F2D30041364C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39ED52672F2D30041364C /* Tests_iOS.swift */; };
 		7ED39EE12672F2D30041364C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EE02672F2D30041364C /* Tests_macOS.swift */; };
 		7ED39EE32672F2D30041364C /* BaseProject_ReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */; };
@@ -15,6 +16,15 @@
 		7ED39EE62672F2D30041364C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EBB2672F2D20041364C /* ContentView.swift */; };
 		7ED39EE72672F2D30041364C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED39EBC2672F2D30041364C /* Assets.xcassets */; };
 		7ED39EE82672F2D30041364C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED39EBC2672F2D30041364C /* Assets.xcassets */; };
+		7ED39EFD2672F8300041364C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EFC2672F8300041364C /* AppState.swift */; };
+		7ED39F072672F96F0041364C /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F062672F96F0041364C /* DependencyInjector.swift */; };
+		7ED39F0D2672FAA90041364C /* InteractorsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F0C2672FAA90041364C /* InteractorsContainer.swift */; };
+		7ED39F132672FB6D0041364C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F122672FB6D0041364C /* Store.swift */; };
+		7ED39F192672FB930041364C /* RootViewModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F182672FB930041364C /* RootViewModifire.swift */; };
+		7ED39F412672FFE50041364C /* Lodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F402672FFE50041364C /* Lodable.swift */; };
+		7ED39F47267300170041364C /* CancleBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F46267300170041364C /* CancleBag.swift */; };
+		7ED39F9426732EAB0041364C /* GitHubInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F9326732EAB0041364C /* GitHubInteractor.swift */; };
+		7ED39F9B267348C50041364C /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39F9A267348C50041364C /* AppEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E6D4E2926772DD800741B5C /* SystemEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEventHandler.swift; sourceTree = "<group>"; };
 		7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProject_ReduxApp.swift; sourceTree = "<group>"; };
 		7ED39EBB2672F2D20041364C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7ED39EBC2672F2D30041364C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +60,15 @@
 		7ED39EDC2672F2D30041364C /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED39EE02672F2D30041364C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		7ED39EE22672F2D30041364C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7ED39EFC2672F8300041364C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7ED39F062672F96F0041364C /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
+		7ED39F0C2672FAA90041364C /* InteractorsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorsContainer.swift; sourceTree = "<group>"; };
+		7ED39F122672FB6D0041364C /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		7ED39F182672FB930041364C /* RootViewModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModifire.swift; sourceTree = "<group>"; };
+		7ED39F402672FFE50041364C /* Lodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lodable.swift; sourceTree = "<group>"; };
+		7ED39F46267300170041364C /* CancleBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancleBag.swift; sourceTree = "<group>"; };
+		7ED39F9326732EAB0041364C /* GitHubInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubInteractor.swift; sourceTree = "<group>"; };
+		7ED39F9A267348C50041364C /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +118,16 @@
 		7ED39EB92672F2D20041364C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				7ED39F99267348BE0041364C /* System */,
+				7ED39F57267301200041364C /* Model */,
+				7ED39F4C267300C30041364C /* Interactor */,
+				7ED39F1F2672FEA80041364C /* Utility */,
+				7ED39F1E2672FDFB0041364C /* Repository */,
+				7ED39EFB2672F7AC0041364C /* Injection */,
 				7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */,
 				7ED39EBB2672F2D20041364C /* ContentView.swift */,
 				7ED39EBC2672F2D30041364C /* Assets.xcassets */,
+				7ED39F182672FB930041364C /* RootViewModifire.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -149,6 +176,57 @@
 				7ED39EE22672F2D30041364C /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		7ED39EFB2672F7AC0041364C /* Injection */ = {
+			isa = PBXGroup;
+			children = (
+				7ED39EFC2672F8300041364C /* AppState.swift */,
+				7ED39F062672F96F0041364C /* DependencyInjector.swift */,
+				7ED39F0C2672FAA90041364C /* InteractorsContainer.swift */,
+			);
+			path = Injection;
+			sourceTree = "<group>";
+		};
+		7ED39F1E2672FDFB0041364C /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		7ED39F1F2672FEA80041364C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7ED39F122672FB6D0041364C /* Store.swift */,
+				7ED39F402672FFE50041364C /* Lodable.swift */,
+				7ED39F46267300170041364C /* CancleBag.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		7ED39F4C267300C30041364C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				7ED39F9326732EAB0041364C /* GitHubInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		7ED39F57267301200041364C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7ED39F99267348BE0041364C /* System */ = {
+			isa = PBXGroup;
+			children = (
+				7ED39F9A267348C50041364C /* AppEnvironment.swift */,
+				7E6D4E2926772DD800741B5C /* SystemEventHandler.swift */,
+			);
+			path = System;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,8 +386,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED39F192672FB930041364C /* RootViewModifire.swift in Sources */,
+				7ED39F072672F96F0041364C /* DependencyInjector.swift in Sources */,
+				7ED39F412672FFE50041364C /* Lodable.swift in Sources */,
+				7ED39F0D2672FAA90041364C /* InteractorsContainer.swift in Sources */,
+				7E6D4E2A26772DD800741B5C /* SystemEventHandler.swift in Sources */,
+				7ED39EFD2672F8300041364C /* AppState.swift in Sources */,
+				7ED39F9426732EAB0041364C /* GitHubInteractor.swift in Sources */,
+				7ED39F132672FB6D0041364C /* Store.swift in Sources */,
 				7ED39EE52672F2D30041364C /* ContentView.swift in Sources */,
 				7ED39EE32672F2D30041364C /* BaseProject_ReduxApp.swift in Sources */,
+				7ED39F47267300170041364C /* CancleBag.swift in Sources */,
+				7ED39F9B267348C50041364C /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
