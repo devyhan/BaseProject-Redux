@@ -10,6 +10,8 @@ import Combine
 
 protocol SystemEventsHandler {
     func systemEventHandler_test()
+    func onAppEnterForground_test()
+    func onAppEnteredBackground_test()
 }
 
 // MARK: - Implementation
@@ -24,5 +26,13 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
     
     func systemEventHandler_test() {
         print("systemEventHandler_test")
+    }
+    
+    func onAppEnterForground_test() {
+        print("onAppEnterForground")
+    }
+    
+    func onAppEnteredBackground_test() {
+        print("onAppEnteredBackground")
     }
 }
