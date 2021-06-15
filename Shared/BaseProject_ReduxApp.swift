@@ -10,6 +10,12 @@ import SwiftUI
 @main
 struct BaseProject_ReduxApp: App {
     let environment = AppEnvironment.bootstrap()
+    var systemEventsHandler: SystemEventsHandler?
+    
+    init() {
+        self.systemEventsHandler = environment.systemEventsHandler
+        systemEventsHandler?.systemEventHandler_test()
+    }
     
     var body: some Scene {
         WindowGroup {

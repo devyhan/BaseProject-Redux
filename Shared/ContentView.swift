@@ -9,39 +9,19 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    
-    @State private var toggle: Bool = false
-    @State private var email: String?
     let container: DIContainer
     
     var body: some View {
-        content()
-            .onAppear(perform: load)
-            .onReceive(userDataUpdate) { self.email = $0 }
+        content
+            .inject(container)
     }
 }
 
 extension ContentView {
-    func content() -> some View {
-        ZStack {
-            Text(email ?? "")
-        }
+    var content: some View {
+        SomeView()
     }
 }
-
-// MARK: - Side Effects
-
-private extension ContentView {
-    func load() {
-        container.interactors.gitHubinteractor
-            .loadEmailAddress(email)
-    }
-    
-    var userDataUpdate: AnyPublisher<String?, Never> {
-        container.appState.updates(for: \.userData.username)
-    }
-}
-
 
 // MARK: - Preview
 
@@ -52,3 +32,58 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 #endif
+
+struct SomeView: View {
+    @Environment(\.injected) private var injected: DIContainer
+    @State private var email: String?
+    @State private var keyboardHeight: Double?
+    @State private var text: String = ""
+    @State private var contentSearch = CountriesSearch()
+    
+    var body: some View {
+        content
+            .onAppear(perform: load)
+            .onReceive(userDataUpdate) { self.email = $0 }
+            .onReceive(keyboardHeightUpdate) { print($0) }
+    }
+    
+    private var content: some View {
+        Group {
+            Text("keyboard height: \(keyboardHeight ?? 0)")
+            Text("email: \(email ?? "")")
+            TextField("TextField", text: $text)
+        }
+    }
+}
+
+// MARK: - Side Effects
+
+private extension SomeView {
+    func load() {
+        injected.interactors.gitHubinteractor
+            .loadEmailAddress(email)
+    }
+}
+
+// MARK: - State Updates
+
+private extension SomeView {
+    var userDataUpdate: AnyPublisher<String?, Never> {
+        injected.appState.updates(for: \.userData.username)
+            .delay(for: .seconds(1.5), scheduler: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+    
+    var keyboardHeightUpdate: AnyPublisher<CGFloat, Never> {
+        injected.appState.updates(for: \.system.keyboardHeight)
+    }
+}
+
+// MARK: - Search State
+
+extension SomeView {
+    struct CountriesSearch {
+        var searchText: String = ""
+        var keyboardHeight: CGFloat = 0
+    }
+}

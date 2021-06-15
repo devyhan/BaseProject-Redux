@@ -22,6 +22,7 @@ struct GitHubInteractorImpl: GitHubInteractor {
     }
     
     func loadEmailAddress(_ named: String?) {
+        appState[\.system.isActive] = true
         appState[\.userData.username] = "devyhan93@gmail.com"
     }
 }

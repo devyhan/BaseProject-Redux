@@ -8,22 +8,21 @@
 import SwiftUI
 import Combine
 
-// MARK: - Notifications
+protocol SystemEventsHandler {
+    func systemEventHandler_test()
+}
 
-//private extension NotificationCenter {
-//    var keyboardHeightPublisher: AnyPublisher<CGFloat, Never> {
-//        let willShow = publisher(for: UIApplication.keyboardWillShowNotification)
-//            .map { $0.keyboardHeight }
-//        let willHide = publisher(for: UIApplication.keyboardWillHideNotification)
-//            .map { _ in CGFloat(0) }
-//        return Publishers.Merge(willShow, willHide)
-//            .eraseToAnyPublisher()
-//    }
-//}
-//
-//private extension Notification {
-//    var keyboardHeight: CGFloat {
-//        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
-//            .cgRectValue.height ?? 0
-//    }
-//}
+// MARK: - Implementation
+
+struct SystemEventsHandlerImpl: SystemEventsHandler {
+    let container: DIContainer
+    private var cancelBag = CancelBag()
+    
+    init(container: DIContainer) {
+        self.container = container
+    }
+    
+    func systemEventHandler_test() {
+        print("systemEventHandler_test")
+    }
+}
