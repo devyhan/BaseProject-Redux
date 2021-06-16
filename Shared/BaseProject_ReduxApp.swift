@@ -20,12 +20,13 @@ struct BaseProject_ReduxApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(container: environment.container)
-                .onAppEnterForground(perform: systemEventsHandler.onAppEnterForground_test)
-                .onAppEnteredBackground(perform: systemEventsHandler.onAppEnteredBackground_test)
+                .onAppEnterForground(perform: systemEventsHandler.systemEventHandler_test)
+                .onAppEnteredBackground(perform: systemEventsHandler.systemEventHandler_test)
+                .willResignActiveNotification(perform: systemEventsHandler.onAppEnterForground_test)
+                .didBecomeActiveNotification(perform: systemEventsHandler.onAppEnteredBackground_test)
         }
     }
 }
-
 
 // MARK: - Responding to App Life-Cycle Events
 
@@ -46,6 +47,24 @@ private extension View {
     ) -> some View {
         onNotification(
             UIApplication.didEnterBackgroundNotification,
+            perform: action
+        )
+    }
+    
+    func willResignActiveNotification(
+        perform action: @escaping () -> Void
+    ) -> some View {
+        onNotification(
+            UIApplication.willResignActiveNotification,
+            perform: action
+        )
+    }
+
+    func didBecomeActiveNotification(
+        perform action: @escaping () -> Void
+    ) -> some View {
+        onNotification(
+            UIApplication.didBecomeActiveNotification,
             perform: action
         )
     }

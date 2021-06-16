@@ -44,7 +44,7 @@ struct SomeView: View {
         content
             .onAppear(perform: load)
             .onReceive(userDataUpdate) { self.email = $0 }
-            .onReceive(keyboardHeightUpdate) { print($0) }
+            .onReceive(keyboardHeightUpdate) { Log(type: .network, $0) }
     }
     
     private var content: some View {

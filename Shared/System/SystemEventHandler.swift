@@ -25,14 +25,17 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
     }
     
     func systemEventHandler_test() {
-        print("systemEventHandler_test")
+//        print("systemEventHandler_test")
+        Log(type: .debug, "test_system_log")
     }
     
     func onAppEnterForground_test() {
-        print("onAppEnterForground")
+        Log(type: .debug, "onAppEnterForground")
+        container.appState[\.system.isActive] = false
     }
     
     func onAppEnteredBackground_test() {
-        print("onAppEnteredBackground")
+        Log(type: .debug, "onAppEnteredBackground")
+        container.appState[\.system.isActive] = true
     }
 }

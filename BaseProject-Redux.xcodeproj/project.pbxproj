@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E6D4E2A26772DD800741B5C /* SystemEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D4E2926772DD800741B5C /* SystemEventHandler.swift */; };
+		7E6D4E3D26789F0800741B5C /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D4E3C26789F0800741B5C /* Log.swift */; };
 		7ED39ED62672F2D30041364C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39ED52672F2D30041364C /* Tests_iOS.swift */; };
 		7ED39EE12672F2D30041364C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EE02672F2D30041364C /* Tests_macOS.swift */; };
 		7ED39EE32672F2D30041364C /* BaseProject_ReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		7E6D4E2926772DD800741B5C /* SystemEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEventHandler.swift; sourceTree = "<group>"; };
+		7E6D4E3C26789F0800741B5C /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProject_ReduxApp.swift; sourceTree = "<group>"; };
 		7ED39EBB2672F2D20041364C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7ED39EBC2672F2D30041364C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				7ED39F122672FB6D0041364C /* Store.swift */,
 				7ED39F402672FFE50041364C /* Lodable.swift */,
 				7ED39F46267300170041364C /* CancleBag.swift */,
+				7E6D4E3C26789F0800741B5C /* Log.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			files = (
 				7ED39F192672FB930041364C /* RootViewModifire.swift in Sources */,
 				7ED39F072672F96F0041364C /* DependencyInjector.swift in Sources */,
+				7E6D4E3D26789F0800741B5C /* Log.swift in Sources */,
 				7ED39F412672FFE50041364C /* Lodable.swift in Sources */,
 				7ED39F0D2672FAA90041364C /* InteractorsContainer.swift in Sources */,
 				7E6D4E2A26772DD800741B5C /* SystemEventHandler.swift in Sources */,
