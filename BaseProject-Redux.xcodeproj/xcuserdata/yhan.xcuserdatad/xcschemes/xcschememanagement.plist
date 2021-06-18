@@ -7,12 +7,56 @@
 		<key>BaseProject-Redux (iOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>6</integer>
 		</dict>
 		<key>BaseProject-Redux (macOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>7</integer>
+		</dict>
+		<key>Promises (Playground) 1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>Promises (Playground) 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>Promises (Playground).xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7ED39EC02672F2D30041364C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7ED39EC82672F2D30041364C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7ED39ED02672F2D30041364C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7ED39EDB2672F2D30041364C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

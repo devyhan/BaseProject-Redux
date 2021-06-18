@@ -6,25 +6,33 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct BaseProject_ReduxApp: App {
-    let environment = AppEnvironment.bootstrap()
+    let environment = AppEnvironment.bootstrap() 
     let systemEventsHandler: SystemEventsHandler
     
     init() {
         self.systemEventsHandler = environment.systemEventsHandler
-        systemEventsHandler.systemEventHandler_test()
     }
     
     var body: some Scene {
         WindowGroup {
             ContentView(container: environment.container)
+                .onAppear(perform: loadFirebase)
                 .onAppEnterForground(perform: systemEventsHandler.systemEventHandler_test)
                 .onAppEnteredBackground(perform: systemEventsHandler.systemEventHandler_test)
                 .willResignActiveNotification(perform: systemEventsHandler.onAppEnterForground_test)
                 .didBecomeActiveNotification(perform: systemEventsHandler.onAppEnteredBackground_test)
         }
+    }
+}
+
+private extension BaseProject_ReduxApp {
+    func loadFirebase() {
+        systemEventsHandler.systemEventHandler_test()
+        FirebaseApp.configure()
     }
 }
 

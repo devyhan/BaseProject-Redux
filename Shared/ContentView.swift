@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseCrashlytics
 
 struct ContentView: View {
     let container: DIContainer
@@ -52,6 +53,14 @@ struct SomeView: View {
             Text("keyboard height: \(keyboardHeight ?? 0)")
             Text("email: \(email ?? "")")
             TextField("TextField", text: $text)
+            
+            Button {
+                Crashlytics.crashlytics().setCustomValue(100, forKey: "int_key")
+                fatalError()
+            } label: {
+                Text("fatal")
+            }
+
         }
     }
 }
@@ -62,6 +71,11 @@ private extension SomeView {
     func load() {
         injected.interactors.gitHubinteractor
             .loadEmailAddress(email)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            fatalError()
+            Crashlytics.crashlytics().setCustomValue(100, forKey: "int_key")
+        }
     }
 }
 
