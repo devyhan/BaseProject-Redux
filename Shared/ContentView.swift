@@ -50,6 +50,7 @@ struct SomeView: View {
     
     private var content: some View {
         Group {
+            Text("redux")
             Text("keyboard height: \(keyboardHeight ?? 0)")
             Text("email: \(email ?? "")")
             TextField("TextField", text: $text)

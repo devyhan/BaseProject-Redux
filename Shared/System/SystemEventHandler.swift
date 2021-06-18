@@ -7,8 +7,10 @@
 
 import SwiftUI
 import Combine
+import Firebase
 
 protocol SystemEventsHandler {
+    func firebaseConfigure()
     func systemEventHandler_test()
     func onAppEnterForground_test()
     func onAppEnteredBackground_test()
@@ -24,8 +26,11 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
         self.container = container
     }
     
+    func firebaseConfigure() {
+        FirebaseApp.configure()
+    }
+    
     func systemEventHandler_test() {
-//        print("systemEventHandler_test")
         Log(type: .debug, "test_system_log")
     }
     

@@ -14,6 +14,7 @@
 		7E6D4E552679D9E800741B5C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E6D4E542679D9E800741B5C /* FirebaseCrashlytics */; };
 		7E6D4E572679D9E800741B5C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7E6D4E562679D9E800741B5C /* FirebaseMessaging */; };
 		7E6D4E75267B294500741B5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D4E74267B294500741B5C /* GoogleService-Info.plist */; };
+		7EB8DC5C267C3CBF00482CBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8DC5E267C3CBF00482CBF /* Localizable.strings */; };
 		7ED39ED62672F2D30041364C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39ED52672F2D30041364C /* Tests_iOS.swift */; };
 		7ED39EE12672F2D30041364C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EE02672F2D30041364C /* Tests_macOS.swift */; };
 		7ED39EE32672F2D30041364C /* BaseProject_ReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */; };
@@ -54,6 +55,8 @@
 		7E6D4E2926772DD800741B5C /* SystemEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEventHandler.swift; sourceTree = "<group>"; };
 		7E6D4E3C26789F0800741B5C /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7E6D4E74267B294500741B5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7EB8DC68267C3D7900482CBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7EB8DC69267C3DCC00482CBF /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7ED39EBA2672F2D20041364C /* BaseProject_ReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProject_ReduxApp.swift; sourceTree = "<group>"; };
 		7ED39EBB2672F2D20041364C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7ED39EBC2672F2D30041364C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,7 +121,7 @@
 		7E6D4E88267B2E6E00741B5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7E6D4E74267B294500741B5C /* GoogleService-Info.plist */,
+				7EB8DC5E267C3CBF00482CBF /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				7ED39EC42672F2D30041364C /* Info.plist */,
+				7E6D4E74267B294500741B5C /* GoogleService-Info.plist */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -364,6 +368,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"ko-KR",
 			);
 			mainGroup = 7ED39EB42672F2D20041364C;
 			packageReferences = (
@@ -387,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E6D4E75267B294500741B5C /* GoogleService-Info.plist in Resources */,
+				7EB8DC5C267C3CBF00482CBF /* Localizable.strings in Resources */,
 				7ED39EE72672F2D30041364C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +458,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FIREBASE_INFO_PLIST=${GOOGLE_SERVICE_INFO_PLIST_NAME}\necho \"FIREBASE_INFO_PLIST = ${FIREBASE_INFO_PLIST}\"\n# Type a script or drag a script file from your workspace to insert its path.\nFIREBASE_INFO_DEVELOP=\"${PROJECT_DIR}/Shared/Resources/${FIREBASE_INFO_PLIST}\"\necho \"FIREBASE_INFO_DEVELOP = ${FIREBASE_INFO_DEVELOP}\"\necho \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\ncp \"${FIREBASE_INFO_DEVELOP}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;\n";
+			shellScript = "FIREBASE_INFO_PLIST=${GOOGLE_SERVICE_INFO_PLIST_NAME}\necho \"FIREBASE_INFO_PLIST = ${FIREBASE_INFO_PLIST}\"\n# Type a script or drag a script file from your workspace to insert its path.\nFIREBASE_INFO_DEVELOP=\"${PROJECT_DIR}/iOS/${FIREBASE_INFO_PLIST}\"\necho \"FIREBASE_INFO_DEVELOP = ${FIREBASE_INFO_DEVELOP}\"\necho \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\ncp \"${FIREBASE_INFO_DEVELOP}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -517,11 +523,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7EB8DC5E267C3CBF00482CBF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EB8DC68267C3D7900482CBF /* en */,
+				7EB8DC69267C3DCC00482CBF /* ko-KR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		7ED39EE92672F2D30041364C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -581,6 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
