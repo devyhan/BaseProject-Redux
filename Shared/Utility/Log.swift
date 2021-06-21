@@ -27,9 +27,9 @@ final class Log {
         }
         
         switch type {
-        case .debug: print("〈🟢 DEBUG〉〈\(currentTime)ms〉〈\(fileName):\(line)_\(function)〉 : " + "\(message)")
-        case .network: print("〈🟠 NETWORK〉〈\(currentTime)ms〉〈\(fileName):\(line)_\(function)〉 : " + "\(message)")
-        case .error: print("〈🔴 ERROR〉〈\(currentTime)ms〉〈\(fileName):\(line)_\(function)〉 : " + "\(message)")
+        case .debug: print("〈🟢 DEBUG〉〈\(currentTime)ms〉〈\(fileName):\(line): \(function)〉 : " + "\(message)")
+        case .network: print("〈🟠 NETWORK〉〈\(currentTime)ms〉〈\(fileName):\(line): \(function)〉 : " + "\(message)")
+        case .error: print("〈🔴 ERROR〉〈\(currentTime)ms〉〈\(fileName):\(line): \(function)〉 : " + "\(message)")
         }
     }
 }

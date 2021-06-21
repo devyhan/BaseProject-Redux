@@ -11,6 +11,7 @@ import Firebase
 
 protocol SystemEventsHandler {
     func firebaseConfigure()
+    func getRemoteConfigure()
     func systemEventHandler_test()
     func onAppEnterForground_test()
     func onAppEnteredBackground_test()
@@ -28,6 +29,10 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
     
     func firebaseConfigure() {
         FirebaseApp.configure()
+    }
+    
+    func getRemoteConfigure() {
+        container.interactors
     }
     
     func systemEventHandler_test() {

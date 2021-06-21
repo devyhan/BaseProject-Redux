@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import FirebaseRemoteConfig
 
 struct AppEnvironment {
     let container: DIContainer
@@ -32,17 +33,47 @@ extension AppEnvironment {
                 deepLinksHandler.open(deepLink: .showCountryFlag(alpha3Code: "AFG"))
             }
         */
-        let interactors = configuredInteractors(appState: appState)
+        let session = configuredURLSession()
+        let webRepositories = configuredWebRepositories(session: session)
+        let interactors = configuredInteractors(appState: appState,
+                                                webRepository: webRepositories)
         let diContainer = DIContainer(appState: appState, interactors: interactors)
         let systemEventsHandler = SystemEventsHandlerImpl(container: diContainer)
         return AppEnvironment(container: diContainer,
                               systemEventsHandler: systemEventsHandler)
     }
     
-    private static func configuredInteractors(appState: Store<AppState>) -> DIContainer.Interactors {
+    private static func configuredURLSession() -> URLSession {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 60
+        configuration.timeoutIntervalForResource = 120
+        configuration.waitsForConnectivity = true
+        configuration.httpMaximumConnectionsPerHost = 5
+        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        configuration.urlCache = .shared
+        return URLSession(configuration: configuration)
+    }
+    
+    private static func configuredWebRepositories(session: URLSession) -> DIContainer.WebRepositories {
+        let gitWebRepository = GithubWebRepositoryImpl(
+            session: session,
+            baseURL: "https://api.github.com/search")
         
-        let githubInteractor = GitHubInteractorImpl(appState: appState)
+        return .init(gitRepository: gitWebRepository)
+    }
+    
+    private static func configuredInteractors(appState: Store<AppState>,
+                                              webRepository: DIContainer.WebRepositories
+    ) -> DIContainer.Interactors {
         
-        return .init(gitHubinteractor: githubInteractor)
+        let githubInteractor = GitHubInteractorImpl(appState: appState, webRepository: webRepository.gitRepository)
+        
+        return .init(githubInteractor: githubInteractor)
+    }
+}
+
+extension DIContainer {
+    struct WebRepositories {
+        let gitRepository: GithubWebRepository
     }
 }

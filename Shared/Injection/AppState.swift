@@ -8,13 +8,7 @@
 import SwiftUI
 import Combine
 
-class AppState: ObservableObject, Equatable {
-    static func == (lhs: AppState, rhs: AppState) -> Bool {
-        return lhs.userData == rhs.userData &&
-            lhs.routing == rhs.routing &&
-            lhs.system == rhs.system
-    }
-    
+class AppState: Equatable {
     @Published var userData = UserData()
     @Published var routing = ViewRouting()
     @Published var system = System()
@@ -33,20 +27,29 @@ extension AppState {
 }
 
 extension AppState {
-    struct ViewRouting: Equatable { }
+    struct ViewRouting: Equatable {
+        var gitRepository = SomeView.Routing()
+    }
 }
 
 extension AppState {
     struct System: Equatable {
         var isActive: Bool = false
         var keyboardHeight: CGFloat = 0
+        var appVersion: String = ""
     }
+}
+
+func == (lhs: AppState, rhs: AppState) -> Bool {
+    return lhs.userData == rhs.userData &&
+        lhs.routing == rhs.routing &&
+        lhs.system == rhs.system
 }
 
 #if DEBUG
 extension AppState {
     static var preview: AppState {
-        var state = AppState()
+        let state = AppState()
         state.system.isActive = true
         return state
     }

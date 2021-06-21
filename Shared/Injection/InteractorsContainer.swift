@@ -7,14 +7,14 @@
 
 extension DIContainer {
     struct Interactors {
-        let gitHubinteractor: GitHubInteractor
+        let githubInteractor: GitHubInteractor
 
-        init(gitHubinteractor: GitHubInteractor) {
-            self.gitHubinteractor = gitHubinteractor
+        init(githubInteractor: GitHubInteractor) {
+            self.githubInteractor = githubInteractor
         }
 
         static var stub: Self {
-            .init(gitHubinteractor: StubGitHubInteractor())
+            .init(githubInteractor: StubGitHubInteractor())
         }
     }
 }
