@@ -8,6 +8,8 @@
 import SwiftUI
 import Combine
 import Firebase
+import FirebaseRemoteConfig
+
 
 protocol SystemEventsHandler {
     func firebaseConfigure()
@@ -21,6 +23,7 @@ protocol SystemEventsHandler {
 
 struct SystemEventsHandlerImpl: SystemEventsHandler {
     let container: DIContainer
+//    let remoteConfig: RemoteConfig
     private var cancelBag = CancelBag()
     
     init(container: DIContainer) {
@@ -29,10 +32,61 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
     
     func firebaseConfigure() {
         FirebaseApp.configure()
+        RemoteConfig.remoteConfig()
     }
     
     func getRemoteConfigure() {
-        container.interactors
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.fetch() { (status, error) -> Void in
+            if status == .success {
+              print("Config fetched!")
+              let ver = remoteConfig["application_version_requierd"].stringValue!
+              Log(type: .debug, ver)
+            } else {
+              print("Config not fetched")
+              print("Error: \(error?.localizedDescription ?? "No error available.")")
+            }
+  //          self.displayWelcome()
+          }
+        
+        
+//        remoteConfig.fetch() { (status, error) -> Void in
+//          if status == .success {
+//            print("Config fetched!")
+//            let ver = remoteConfig["application_version_requierd"].stringValue!
+//            Log(type: .debug, ver)
+//          } else {
+//            print("Config not fetched")
+//            print("Error: \(error?.localizedDescription ?? "No error available.")")
+//          }
+//          self.displayWelcome()
+//        }
+//        let subject = PassthroughSubject<Void, Error>()
+        
+//        remoteConfig.fetch { (status, error) in
+//            switch status {
+//            case .success:
+//                remoteConfig.activate { (changed, error) in
+//                    if let e = error {
+//                        subject.send(completion: .failure(e))
+//                    } else {
+//                        subject.send()
+//                    }
+//                }
+//            case .noFetchYet, .failure, .throttled:
+//                if let e = error {
+//                    subject.send(completion: .failure(e))
+//                } else {
+//                    subject.send(completion: .failure(ThrowableError.unknown(message: "FIRRemoteConfigFetchStatus : \(status)")))
+//                }
+//            @unknown default:
+//                #warning("Error handling is required")
+//                fatalError("An unknown status was returned fetch while FirebaseRemoteConfig")
+//            }
+//        }
+        
+
+//        Log(type: .debug, subject)
     }
     
     func systemEventHandler_test() {
@@ -48,4 +102,30 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
         Log(type: .debug, "onAppEnteredBackground")
         container.appState[\.system.isActive] = true
     }
+    
+//    private func getVariantObj<R: Codable>(_ key: String) -> R? {
+//        let config: Dictionary<String, R>? = self.remoteConfig
+//            .configValue(forKey: key).dataValue.fromJson()
+//        return config?[Config.flavor.lowercased()]
+//    }
+}
+
+extension Bundle {
+    static var appVersion: String {
+        if let value = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String { return value }
+        return ""
+    }
+}
+
+class Config {
+    #if DEBUG
+    static let isDebug = true
+    #else
+    static let isDebug = false
+    #endif
+}
+
+enum ThrowableError: Error {
+    case nilPointer
+    case unknown(message: String)
 }

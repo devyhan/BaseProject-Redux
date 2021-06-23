@@ -99,6 +99,7 @@ private extension SomeView {
             .load(gitReposotory: $repositorys)
         //        }
         
+//        injected.interactors.configInteractor
     }
 }
 

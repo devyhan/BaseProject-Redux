@@ -33,6 +33,11 @@ extension AppEnvironment {
                 deepLinksHandler.open(deepLink: .showCountryFlag(alpha3Code: "AFG"))
             }
         */
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let setting = RemoteConfigSettings()
+        setting.minimumFetchInterval = Config.isDebug ? 0 : (5 * 60)
+        remoteConfig.configSettings = setting
+        
         let session = configuredURLSession()
         let webRepositories = configuredWebRepositories(session: session)
         let interactors = configuredInteractors(appState: appState,

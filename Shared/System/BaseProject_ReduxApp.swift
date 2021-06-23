@@ -33,6 +33,7 @@ struct BaseProject_ReduxApp: App {
 private extension BaseProject_ReduxApp {
     func load() {
         systemEventsHandler.firebaseConfigure()
+        systemEventsHandler.getRemoteConfigure()
     }
 }
 

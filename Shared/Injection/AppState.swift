@@ -37,6 +37,7 @@ extension AppState {
         var isActive: Bool = false
         var keyboardHeight: CGFloat = 0
         var appVersion: String = ""
+        var version: [String: String] = ["version": Bundle.appVersion]
     }
 }
 

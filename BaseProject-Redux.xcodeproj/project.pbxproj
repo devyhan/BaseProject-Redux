@@ -720,6 +720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.devyhan93.BaseProject-Redux";
 				PRODUCT_NAME = "BaseProject-Redux";
@@ -744,6 +745,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.devyhan93.BaseProject-Redux";
 				PRODUCT_NAME = "BaseProject-Redux";

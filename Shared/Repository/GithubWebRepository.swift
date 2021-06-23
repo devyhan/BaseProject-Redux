@@ -26,8 +26,7 @@ struct GithubWebRepositoryImpl: GithubWebRepository {
     }
     
     func loadGitRepository() -> AnyPublisher<GithubSearchResult<GitRepository>, Error> {
-        Log(type: .debug, API.allRepository)
-        return call(endpoint: API.allRepository)
+        call(endpoint: API.allRepository)
     }
 }
 
