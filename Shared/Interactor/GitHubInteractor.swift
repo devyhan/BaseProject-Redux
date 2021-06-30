@@ -36,20 +36,8 @@ struct GitHubInteractorImpl: GitHubInteractor {
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [webRepository] _ -> AnyPublisher<GithubSearchResult<GitRepository>, Error> in
-//                dbRepository.hasLoadedCountries()
                 return webRepository.loadGitRepository()
             }
-//            .flatMap { hasLoaded -> AnyPublisher<Void, Error> in
-//                if hasLoaded {
-//                    return Just<Void>.withErrorType(Error.self)
-//                } else {
-//                    return self.refreshCountriesList()
-//                }
-//            }
-//            .flatMap { [gitReposotory] in
-                
-//                dbRepository.countries(search: search, locale: locale)
-//            }
             .sinkToLoadable {
                 
                 let _ = gitReposotory.wrappedValue.map {

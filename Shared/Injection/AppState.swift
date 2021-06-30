@@ -16,6 +16,7 @@ class AppState: Equatable {
 
 extension AppState {
     struct UserData: Equatable {
+        var repos: [String: String] = [:]
         /*
          The list of countries (Loadable<[Country]>) used to be stored here.
          It was removed for performing countries' search by name inside a database,
@@ -34,10 +35,18 @@ extension AppState {
 
 extension AppState {
     struct System: Equatable {
+        // App
+        var alphavantageBaseURL: String?
         var isActive: Bool = false
         var keyboardHeight: CGFloat = 0
         var appVersion: String = ""
         var version: [String: String] = ["version": Bundle.appVersion]
+        
+        // RemoteConfig
+        var requierdVersion: String?
+        var optionalVersion: String?
+        var baseURL: String?
+        var APIKey: String?
     }
 }
 

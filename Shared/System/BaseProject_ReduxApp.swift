@@ -10,7 +10,6 @@ import Firebase
 
 @main
 struct BaseProject_ReduxApp: App {
-    
     let environment = AppEnvironment.bootstrap() 
     let systemEventsHandler: SystemEventsHandler
     
@@ -21,7 +20,7 @@ struct BaseProject_ReduxApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(container: environment.container)
-                .onAppear(perform: load)
+                .onAppear(perform: systemEventLoad)
                 .onAppEnterForground(perform: systemEventsHandler.systemEventHandler_test)
                 .onAppEnteredBackground(perform: systemEventsHandler.systemEventHandler_test)
                 .willResignActiveNotification(perform: systemEventsHandler.onAppEnterForground_test)
@@ -31,8 +30,7 @@ struct BaseProject_ReduxApp: App {
 }
 
 private extension BaseProject_ReduxApp {
-    func load() {
-        systemEventsHandler.firebaseConfigure()
+    func systemEventLoad() {
         systemEventsHandler.getRemoteConfigure()
     }
 }

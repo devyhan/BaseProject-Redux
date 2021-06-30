@@ -10,9 +10,7 @@ import Combine
 import Firebase
 import FirebaseRemoteConfig
 
-
 protocol SystemEventsHandler {
-    func firebaseConfigure()
     func getRemoteConfigure()
     func systemEventHandler_test()
     func onAppEnterForground_test()
@@ -23,70 +21,44 @@ protocol SystemEventsHandler {
 
 struct SystemEventsHandlerImpl: SystemEventsHandler {
     let container: DIContainer
-//    let remoteConfig: RemoteConfig
     private var cancelBag = CancelBag()
+    private var remoteConfig: RemoteConfig
     
     init(container: DIContainer) {
         self.container = container
-    }
-    
-    func firebaseConfigure() {
+        
+        // Firebase
         FirebaseApp.configure()
-        RemoteConfig.remoteConfig()
+        self.remoteConfig = RemoteConfig.remoteConfig()
+        let setting = RemoteConfigSettings()
+        setting.minimumFetchInterval = AppEnvironment.isDebug ? 0 : (5 * 60)
+        remoteConfig.configSettings = setting
     }
     
     func getRemoteConfigure() {
-        let remoteConfig = RemoteConfig.remoteConfig()
         remoteConfig.fetch() { (status, error) -> Void in
             if status == .success {
-              print("Config fetched!")
-              let ver = remoteConfig["application_version_requierd"].stringValue!
-              Log(type: .debug, ver)
+                remoteConfig.activate() { (changed, error) in
+                    guard let requierdVersion: String = getVariantObj("application_version_requierd") else { return }
+                    guard let optionalVersion: String = getVariantObj("application_version_optional") else { return }
+                    guard let baseURL: String = getVariantObj("base_url") else { return }
+                    guard let APIKey: String = getVariantObj("api_key") else { return }
+                    
+                    Log(type: .network, requierdVersion)
+                    Log(type: .network, optionalVersion)
+                    Log(type: .network, baseURL)
+                    Log(type: .network, APIKey)
+                    
+                    container.appState[\.system.requierdVersion] = requierdVersion
+                    container.appState[\.system.optionalVersion] = optionalVersion
+                    container.appState[\.system.baseURL] = baseURL
+                    container.appState[\.system.APIKey] = APIKey
+                }
             } else {
-              print("Config not fetched")
-              print("Error: \(error?.localizedDescription ?? "No error available.")")
+                Log(type: .error, "Config not fetched")
+                print("Error: \(error?.localizedDescription ?? "No error available.")")
             }
-  //          self.displayWelcome()
-          }
-        
-        
-//        remoteConfig.fetch() { (status, error) -> Void in
-//          if status == .success {
-//            print("Config fetched!")
-//            let ver = remoteConfig["application_version_requierd"].stringValue!
-//            Log(type: .debug, ver)
-//          } else {
-//            print("Config not fetched")
-//            print("Error: \(error?.localizedDescription ?? "No error available.")")
-//          }
-//          self.displayWelcome()
-//        }
-//        let subject = PassthroughSubject<Void, Error>()
-        
-//        remoteConfig.fetch { (status, error) in
-//            switch status {
-//            case .success:
-//                remoteConfig.activate { (changed, error) in
-//                    if let e = error {
-//                        subject.send(completion: .failure(e))
-//                    } else {
-//                        subject.send()
-//                    }
-//                }
-//            case .noFetchYet, .failure, .throttled:
-//                if let e = error {
-//                    subject.send(completion: .failure(e))
-//                } else {
-//                    subject.send(completion: .failure(ThrowableError.unknown(message: "FIRRemoteConfigFetchStatus : \(status)")))
-//                }
-//            @unknown default:
-//                #warning("Error handling is required")
-//                fatalError("An unknown status was returned fetch while FirebaseRemoteConfig")
-//            }
-//        }
-        
-
-//        Log(type: .debug, subject)
+        }
     }
     
     func systemEventHandler_test() {
@@ -103,11 +75,11 @@ struct SystemEventsHandlerImpl: SystemEventsHandler {
         container.appState[\.system.isActive] = true
     }
     
-//    private func getVariantObj<R: Codable>(_ key: String) -> R? {
-//        let config: Dictionary<String, R>? = self.remoteConfig
-//            .configValue(forKey: key).dataValue.fromJson()
-//        return config?[Config.flavor.lowercased()]
-//    }
+    private func getVariantObj<R: Codable>(_ key: String) -> R? {
+        let config: Dictionary<String, R>? = remoteConfig
+            .configValue(forKey: key).dataValue.fromJson()
+        return config?[AppEnvironment.flavor.lowercased()]
+    }
 }
 
 extension Bundle {
@@ -117,12 +89,11 @@ extension Bundle {
     }
 }
 
-class Config {
-    #if DEBUG
-    static let isDebug = true
-    #else
-    static let isDebug = false
-    #endif
+extension Data {
+    func fromJson<T: Codable>() -> T {
+        Log(type: .debug, T.self)
+        return try! JSONDecoder().decode(T.self, from: self)
+    }
 }
 
 enum ThrowableError: Error {

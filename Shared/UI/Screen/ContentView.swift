@@ -42,11 +42,10 @@ struct SomeView: View {
         $routingState.dispatched(to: injected.appState, \.routing.gitRepository)
     }
     
-    
     @State private var email: String?
     @State private var keyboardHeight: Double?
     @State private var text: String = ""
-    @State private var contentSearch = CountriesSearch()
+    @State private var repo: Array<String?>?
     
     init(repositorys: Loadable<GithubSearchResult<GitRepository>> = .notRequested) {
         self._repositorys = .init(initialValue: repositorys)
@@ -58,6 +57,7 @@ struct SomeView: View {
             .onReceive(userDataUpdate) { self.email = $0 }
             .onReceive(keyboardHeightUpdate) { Log(type: .network, $0) }
             .onReceive(routingUpdate) { self.routingState = $0 }
+//            .onReceive(data) { repo?.append(contentsOf: $0) }
     }
     
     private var content: some View {
@@ -78,10 +78,12 @@ struct SomeView: View {
     }
     
     private func list(items: GithubSearchResult<GitRepository>) -> some View {
-        ScrollView {
-            ForEach(items.items) {
-                Text("\($0.name)")
-                Text("\($0.description ?? "")")
+        VStack {
+            ScrollView {
+                ForEach(items.items) {
+                    Text("\($0.name)")
+                    Text("\($0.description ?? "")")
+                }
             }
         }
     }
@@ -94,12 +96,8 @@ private extension SomeView {
         injected.interactors.githubInteractor
             .loadEmailAddress(email)
         
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         injected.interactors.githubInteractor
             .load(gitReposotory: $repositorys)
-        //        }
-        
-//        injected.interactors.configInteractor
     }
 }
 
@@ -128,6 +126,10 @@ private extension SomeView {
     var keyboardHeightUpdate: AnyPublisher<CGFloat, Never> {
         injected.appState.updates(for: \.system.keyboardHeight)
     }
+    
+//    var data: AnyPublisher<[String], Never> {
+//        injected.appState.updates(for: \.userData.repos)
+//    }
 }
 
 // MARK: - Search State

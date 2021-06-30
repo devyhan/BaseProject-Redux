@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-import FirebaseRemoteConfig
+import Firebase
 
 struct AppEnvironment {
     let container: DIContainer
@@ -16,27 +16,20 @@ struct AppEnvironment {
 
 extension AppEnvironment {
     
+    #if DEBUG
+    static let isDebug = true
+    #else
+    static let isDebug = false
+    #endif
+    
+    #if DEBUG
+    static let flavor = "Debug"
+    #else
+    static let flavor = "Release"
+    #endif
+    
     static func bootstrap() -> AppEnvironment {
         let appState = Store<AppState>(AppState())
-        /*
-         To see the deep linking in action:
-         
-         1. Launch the app in iOS 13.4 simulator (or newer)
-         2. Subscribe on Push Notifications with "Allow Push" button
-         3. Minimize the app
-         4. Drag & drop "push_with_deeplink.apns" into the Simulator window
-         5. Tap on the push notification
-         
-         Alternatively, just copy the code below before the "return" and launch:
-         
-            DispatchQueue.main.async {
-                deepLinksHandler.open(deepLink: .showCountryFlag(alpha3Code: "AFG"))
-            }
-        */
-        let remoteConfig = RemoteConfig.remoteConfig()
-        let setting = RemoteConfigSettings()
-        setting.minimumFetchInterval = Config.isDebug ? 0 : (5 * 60)
-        remoteConfig.configSettings = setting
         
         let session = configuredURLSession()
         let webRepositories = configuredWebRepositories(session: session)
